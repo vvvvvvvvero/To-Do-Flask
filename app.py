@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from calendar_functions import get_events, create_event, edit_event, delete_event, get_event_by_id
 from datetime import date
 
@@ -39,7 +39,6 @@ def edit(event_id):
     edit_event(event_id, event_name, day, start_time, end_time, description)
     return redirect('/')
 
-
 @app.route('/edit/<event_id>')
 def show_edit_page(event_id):
     day = request.args.get('selected_day', date.today().isoformat())
@@ -55,3 +54,5 @@ def delete(event_id):
 # flask run --port 8000
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
+
+

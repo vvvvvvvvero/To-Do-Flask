@@ -1,3 +1,7 @@
+import json
+
+import googleapiclient.errors
+
 from quickstart import get_calendar_service, HttpError
 
 # day - 2015-05-28 format
@@ -63,11 +67,12 @@ def edit_event(event_id, new_event_name, new_day, new_start_time, new_end_time, 
         event = service.events().get(calendarId='primary', eventId=event_id).execute()
         event['summary'] = new_event_name if new_event_name else event['summary']
         event['description'] = new_description if new_description else event['description']
-        event['start']['dateTime'] = new_day + 'T' + new_start_time + ':00+02:00' if new_day else event['start']['dateTime']
+        event['start']['dateTime'] = new_day + 'T' + new_start_time + ':00+02:00'\
+            if new_day else event['start']['dateTime']
         event['end']['dateTime'] = new_day + 'T' + new_end_time + ':00+02:00' if new_day else event['end']['dateTime']
         updated_event = service.events().update(calendarId='primary', eventId=event['id'], body=event).execute()
         print('Event updated: %s' % (updated_event.get('htmlLink')))
-    except HttpError as error:
+    except googleapiclient.errors.HttpError as error:
         print('An error occurred: %s' % error)
 
 
@@ -82,4 +87,5 @@ def delete_event(event_id):
 
 if __name__ == '__main__':
     print(get_events('2023-06-22'))
-    edit_event('riddnn9pkesreg4d7sthq2pca8', 'Test3', '2023-06-22', '07:00', '09:00', 'What a bad day')
+    # create_event('test', '2023-06-22', '12:00', '13:00', 'test')
+    edit_event('62ubvck5ve3cvtfulk4dfjrn8k', 'test2', '2023-06-22', '12:00', '13:00', 'how')
