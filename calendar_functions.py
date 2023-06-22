@@ -1,10 +1,9 @@
 from quickstart import get_calendar_service, HttpError
-from datetime import date
 
 # day - 2015-05-28 format
 # start_time - our and minute in 24-hour format
 
-def get_events_raw(day=date.today().isoformat()):
+def get_events_raw(day):
     service = get_calendar_service()
     try:
         events_result = service.events().list(calendarId='primary', timeMin=day + 'T00:00:00+02:00',
@@ -29,12 +28,12 @@ def process_events(events):
         })
     return event_list
 
-def get_events(day=date.today().isoformat()):
+def get_events(day):
     events = get_events_raw(day)
     return process_events(events)
 
-def get_event_by_id(event_id):
-    events = get_events()
+def get_event_by_id(event_id, day):
+    events = get_events(day)
     for event in events:
         if event['id'] == event_id:
             return event
@@ -58,7 +57,7 @@ def create_event(event_name, day, start_time, end_time, description=''):
         print('An error occurred: %s' % error)
 
 
-def edit_event(event_id, new_event_name, new_day, new_start_time, new_end_time, new_description=None):
+def edit_event(event_id, new_event_name, new_day, new_start_time, new_end_time, new_description):
     service = get_calendar_service()
     try:
         event = service.events().get(calendarId='primary', eventId=event_id).execute()

@@ -1,12 +1,22 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from calendar_functions import get_events, create_event, edit_event, delete_event, get_event_by_id
+from datetime import date
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    events = get_events()
-    return render_template('index.html', events=events)
+    selected_day = request.args.get('selected_day')
+    today = date.today().isoformat()
+
+    if selected_day:
+        events = get_events(selected_day)
+    else:
+        events = get_events(today)
+        selected_day = today
+    return render_template('index.html', events=events, selected_day=selected_day, today=today)
+
 
 @app.route('/create', methods=['POST'])
 def create():
@@ -18,6 +28,7 @@ def create():
     create_event(event_name, day, start_time, end_time, description)
     return redirect('/')
 
+
 @app.route('/edit/<event_id>', methods=['POST'])  # decorator
 def edit(event_id):
     event_name = request.form['event_name']
@@ -28,9 +39,11 @@ def edit(event_id):
     edit_event(event_id, event_name, day, start_time, end_time, description)
     return redirect('/')
 
+
 @app.route('/edit/<event_id>')
 def show_edit_page(event_id):
-    event = get_event_by_id(event_id)
+    day = request.args.get('selected_day', date.today().isoformat())
+    event = get_event_by_id(event_id, day)
     return render_template('edit.html', event=event, event_id=event_id)
 
 @app.route('/delete/<event_id>')

@@ -15,22 +15,22 @@
 
     <label for="day">Day:</label>
     <label>
-        <input type="date" name="day" value=" {{ event.day }} " >
+        <input type="date" name="day" value="{{ event.day }}">
     </label><br>
 
     <label for="start_time">Start Time:</label>
     <label>
-        <input type="time" name="start_time" value=" {{ event.start_time }} " >
+        <input type="time" name="start_time" value="{{ event.start_time }}">
     </label><br>
 
     <label for="end_time">End Time:</label>
     <label>
-        <input type="time" name="end_time" value=" {{ event.end_time }} " >
+        <input type="time" name="end_time" value="{{ event.end_time }}">
     </label><br>
 
     <label for="description">Description:</label>
     <label>
-        <textarea name="description" >{{ event.description }}</textarea>
+        <textarea name="description">{{ event.description }}</textarea>
     </label><br>
 
     <input type="submit" value="Save">
