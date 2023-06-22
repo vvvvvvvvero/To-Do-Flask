@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Event</title>
+</head>
+<body>
+<h1>Edit Event</h1>
+
+<form action="/edit/{{ event_id }}" method="POST">
+    <label for="event_name">Event Name:</label>
+    <label>
+        <input type="text" name="event_name" value="{{ event.name }}">
+    </label><br>
+
+    <label for="day">Day:</label>
+    <label>
+        <input type="date" name="day" value=" {{ event.day }} " >
+    </label><br>
+
+    <label for="start_time">Start Time:</label>
+    <label>
+        <input type="time" name="start_time" value=" {{ event.start_time }} " >
+    </label><br>
+
+    <label for="end_time">End Time:</label>
+    <label>
+        <input type="time" name="end_time" value=" {{ event.end_time }} " >
+    </label><br>
+
+    <label for="description">Description:</label>
+    <label>
+        <textarea name="description" >{{ event.description }}</textarea>
+    </label><br>
+
+    <input type="submit" value="Save">
+</form>
+
+</body>
+</html>
