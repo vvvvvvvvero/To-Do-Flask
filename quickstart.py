@@ -8,25 +8,24 @@ from googleapiclient.errors import HttpError
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-
 def authenticate():
     creds = None
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    if os.path.exists('authentication/token.json'):
+        creds = Credentials.from_authorized_user_file('authentication/token.json', SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'authentication/credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
-        with open('token.json', 'w') as token:
+        with open('authentication/token.json', 'w') as token:
             token.write(creds.to_json())
     return creds
 
 
 def log_out():
-    os.remove('token.json')
+    os.remove('authentication/token.json')
 
 def get_calendar_service():
     creds = authenticate()
@@ -38,5 +37,4 @@ def get_calendar_service():
 
 
 if __name__ == '__main__':
-    log_out()
-    
+    get_calendar_service()
