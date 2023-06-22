@@ -1,0 +1,142 @@
+body {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+body {
+    background: rgb(63, 94, 251);
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: black;
+    font-size: 54px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+h2 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h3 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Form Styles */
+
+form {
+    background-color: transparent;
+    align-content: center;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+input[type="date"],
+textarea {
+    width: 15%;
+    padding: 8px;
+    border: 0 solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+input[type="text"],
+textarea {
+    width: 20%;
+    padding: 8px;
+    border: 0 solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="time"],
+textarea {
+    width: 20%;
+    padding: 8px;
+    border: 0 solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: rgb(66, 98, 255) ;
+    color: white;
+    padding: 8px;
+    border: 3px transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border: 5px solid white;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-size: 20px;
+}
+
+/* Link Styles */
+a {
+    color: white;
+    font-style: italic;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin-top: 30px;
+    color: black;
+    font-size: 30px;
+    text-align: center;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+
