@@ -61,12 +61,12 @@ def create_event(event_name, day, start_time, end_time, description=''):
         print('An error occurred: %s' % error)
 
 
-def edit_event(event_id, new_event_name, new_day, new_start_time, new_end_time, new_description):
+def edit_event(event_id, new_event_name, new_day, new_start_time, new_end_time, new_description=''):
     service = get_calendar_service()
     try:
         event = service.events().get(calendarId='primary', eventId=event_id).execute()
         event['summary'] = new_event_name if new_event_name else event['summary']
-        event['description'] = new_description if new_description else event['description']
+        event['description'] = new_description
         event['start']['dateTime'] = new_day + 'T' + new_start_time + ':00+02:00'\
             if new_day else event['start']['dateTime']
         event['end']['dateTime'] = new_day + 'T' + new_end_time + ':00+02:00' if new_day else event['end']['dateTime']

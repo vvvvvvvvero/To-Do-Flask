@@ -23,10 +23,6 @@ def authenticate():
             token.write(creds.to_json())
     return creds
 
-
-def log_out():
-    os.remove('authentication/token.json')
-
 def get_calendar_service():
     creds = authenticate()
     try:

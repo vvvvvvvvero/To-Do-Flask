@@ -1,6 +1,8 @@
+import os
 from flask import Flask, render_template, request, redirect, session
 from calendar_functions import get_events, create_event, edit_event, delete_event, get_event_by_id
 from datetime import date, datetime
+
 
 app = Flask(__name__)
 app.secret_key = 'avo11NAILariok!2002eme71'
@@ -61,6 +63,7 @@ def edit(event_id):
 def show_edit_page(event_id):
     day = request.args.get('selected_day', date.today().isoformat())
     event = get_event_by_id(event_id, day)
+    print(event)
     return render_template('edit.html', event=event, event_id=event_id)
 
 @app.route('/delete/<event_id>')
@@ -68,9 +71,13 @@ def delete(event_id):
     delete_event(event_id)
     return redirect('/')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    os.remove('authentication/token.json')
+    return redirect('/')
+
 
 # flask run --port 8000
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
-
-
+    app.run(debug=True, port=8000)

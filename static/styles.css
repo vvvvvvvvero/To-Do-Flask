@@ -88,7 +88,7 @@ textarea {
 }
 
 input[type="submit"] {
-    background-color: rgb(66, 98, 255) ;
+    background-color: black;
     color: white;
     padding: 8px;
     border: 3px transparent;
